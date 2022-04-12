@@ -67,7 +67,7 @@ const EditGundamNote = ({ note }) => {
 
     return (
         <div className="form-container">
-            <h1>Update Note</h1>
+            <h1>Update Mecha Entry</h1>
             <div>
                 {
                     isSubmitting

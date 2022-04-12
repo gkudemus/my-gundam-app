@@ -14,3 +14,36 @@ a {
 * {
   box-sizing: border-box;
 }
+
+h1 {
+  text-align: center;
+}
+
+.wrapper {
+  max-width: 1200px;
+  padding: 0 16px;
+  margin: auto;
+}
+
+.navbar {
+padding: 20px;
+margin-bottom: 20px;
+background-color: blue;
+color: white;
+display: flex;
+justify-content: space-between;
+}
+
+.navbar .navbar-create {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.navbar .navbar-title {
+  color: white;
+  font-size:  2rem;
+}
+
+.navbar-title:hover, .create:hover {
+  color: white;
+}

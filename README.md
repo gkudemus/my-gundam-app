@@ -1,5 +1,11 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+screens:
+![image](https://user-images.githubusercontent.com/6787094/162889921-3f095827-0eb4-41b3-a0c6-1c3ac54d8442.png)
+![image](https://user-images.githubusercontent.com/6787094/162890003-d80215bf-80f7-4e5c-bd70-004737e7e72f.png)
+![image](https://user-images.githubusercontent.com/6787094/162890095-1642ce18-2f21-4220-947a-bcee1af6da43.png)
+![image](https://user-images.githubusercontent.com/6787094/162890215-517d8fbd-8458-4ffd-990b-24c745345748.png)
+
 ## Getting Started
 
 Gundam Mecha App

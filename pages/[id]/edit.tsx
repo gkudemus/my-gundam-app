@@ -4,14 +4,33 @@ import { Button, Form, Loader } from 'semantic-ui-react'
 import { useRouter } from 'next/router'
 
 const EditGundamNote = ({ note }) => {
-    const [form, setForm] = useState({ title: note.title, description: note.description });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [errors, setErrors] = useState({});
-    const router = useRouter();
+    const [form, setForm] = useState({ 
+        title: note.title, 
+        description: note.description,
+        armaments: note.armaments,
+        equipment: note.equipment,
+        history: note.history,
+        pilot: note.pilot
+    })
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [errors, setErrors] = useState({
+        title: '', 
+        description: '',
+        armaments: '',
+        equipment: '',
+        history: '',
+        pilot: ''
+    })
+    const router = useRouter()
 
     useEffect(() => {
         if (isSubmitting) {
-            if (Object.keys(errors).length === 0) {
+            if(errors.title === '' && 
+            errors.description === '' &&
+            errors.armaments === '' &&
+            errors.equipment === '' &&
+            errors.history === '' &&
+            errors.pilot === ''){
                 updateNote();
             }
             else {
@@ -51,16 +70,22 @@ const EditGundamNote = ({ note }) => {
     }
 
     const validate = () => {
-        let err = {};
-
-        if (!form.title) {
-            err.title = 'Title is required';
+        let errors = {
+            title: '', 
+            description: '',
+            armaments: '',
+            equipment: '',
+            history: '',
+            pilot: ''
         }
-        if (!form.description) {
-            err.description = 'Description is required';
-        }
-
-        return err;
+        
+        if(!form.title) errors.title = 'Title is required'
+        if(!form.description) errors.title = 'Description field is required'        
+        if(!form.armaments) errors.armaments = 'Armaments field is required'           
+        if(!form.equipment) errors.equipment = 'Equipment field is required'            
+        if(!form.history) errors.history = 'History field is required'        
+        if(!form.pilot) errors.pilot = 'Pilot field is required'
+        return errors
     }
 
     const back = () => router.push("/")
@@ -89,6 +114,38 @@ const EditGundamNote = ({ note }) => {
                                 value={form.description}
                                 onChange={handleChange}
                             />
+                            <Form.TextArea
+                                label='Armaments'
+                                placeholder='Armaments'
+                                name='armaments'
+                                error={errors.armaments ? { content: 'Please enter armaments details', pointing: 'below' } : null}
+                                value={form.armaments}
+                                onChange={handleChange}
+                            />
+                            <Form.TextArea
+                                label='Equipment'
+                                placeholder='Equipment'
+                                name='equipment'
+                                error={errors.equipment ? { content: 'Please enter equipment details', pointing: 'below' } : null}
+                                value={form.equipment}
+                                onChange={handleChange}
+                            />
+                            <Form.TextArea
+                                label='History'
+                                placeholder='History'
+                                name='history'
+                                error={errors.history ? { content: 'Please enter history details', pointing: 'below' } : null}
+                                value={form.history}
+                                onChange={handleChange}
+                            />
+                            <Form.TextArea
+                                label='Pilot'
+                                placeholder='Pilot'
+                                name='pilot'
+                                error={errors.pilot ? { content: 'Please enter history details', pointing: 'below' } : null}
+                                value={form.pilot}
+                                onChange={handleChange}
+                            />
                             <Button type='submit'>Update</Button>
                             <Button color='green' onClick={back}>Back</Button>
                         </Form>
@@ -99,8 +156,8 @@ const EditGundamNote = ({ note }) => {
 }
 
 EditGundamNote.getInitialProps = async ({ query: { id } }) => {
-    const res = await fetch(`http://localhost:3000/api/notes/${id}`);
-    const { data } = await res.json();
+    const res = await fetch(`http://localhost:3000/api/notes/${id}`)
+    const { data } = await res.json()
 
     return { note: data }
 }

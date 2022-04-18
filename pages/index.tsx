@@ -8,6 +8,8 @@ import gsdImage from '../assets/GSD.jpg'
 interface gundam {
   _id: string;
   title: string;
+  pilot: string;
+  createdAt: string;
 }
 
 interface PageProps {
@@ -18,14 +20,14 @@ const Index = ({ gundamData }: PageProps) => {
   const [gundamNotes, setGundamNotes] = useState(gundamData)
   const [sortType, setSortType] = useState('ascending')
   
-  const updateGundamNotes = gundamData.sort((a, b) => {
-    const isReversed = (sortType === 'ascending') ? 1 : -1
-    return isReversed * a.title.localeCompare(b.title)
+  const sortAlphabeticalGundamNotes = gundamData.sort((a, b) => {
+    const isReversed = (sortType === 'ascending') ? -1 : 1
+    return isReversed * b.title.localeCompare(a.title)
   })
 
-  const sortCountries = (sortby) => {
+  const sortEntries = (sortby) => {
     setSortType(sortby)
-    setGundamNotes(updateGundamNotes)
+    setGundamNotes(sortAlphabeticalGundamNotes)
   }
 
   return (
@@ -38,8 +40,8 @@ const Index = ({ gundamData }: PageProps) => {
           width="1200px"
           height="600px"
         />
-        <Button className='ascending-button' secondary onClick={() => sortCountries('ascending')}>Sort Ascending</Button>
-        <Button className='descending-button' secondary onClick={() => sortCountries('descending')}>Sort Descending</Button>
+        <Button className='ascending-button' secondary onClick={() => sortEntries('ascending')}>Alphabetical Ascending</Button>
+        <Button className='descending-button' secondary onClick={() => sortEntries('descending')}>Alphabetical Descending</Button>        
       </div>
       <div className="grid wrapper">        
       {gundamNotes.map(gundamNote => {        
@@ -51,6 +53,8 @@ const Index = ({ gundamData }: PageProps) => {
                   <Link href={`/${gundamNote._id}`}>
                     <a>{gundamNote.title}</a>
                   </Link>
+                  <hr />
+                  <h3>Pilot: {gundamNote.pilot}</h3>
                 </Card.Header>
               </Card.Content>
               <Card.Content extra>

@@ -65,7 +65,16 @@ const GundamEntryNote = ({ gundamNotes }: PageProps) => {
                 :
                 <>
                     <h1>{gundamNotes.title}</h1>
+                    <h5>Description</h5>
                     <p>{gundamNotes.description}</p>
+                    <h5>Armaments</h5>
+                    <p>{gundamNotes.armaments}</p>
+                    <h5>Equipment</h5>
+                    <p>{gundamNotes.equipment}</p>
+                    <h5>History</h5>
+                    <p>{gundamNotes.history}</p>
+                    <h5>Pilot</h5>
+                    <p>{gundamNotes.pilot}</p>
                     <Button color='red' onClick={open}>Delete</Button>
                     <Button color='green' onClick={back}>Back</Button>
                     <div className='wiki-container'>
